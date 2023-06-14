@@ -3,20 +3,10 @@ import re
 
 def parse_chat(chat):# -> List[Tuple[str, str]]:
     # Get all ``` blocks
-    regex = r"```(.*?)```"
+    regex = re.compile(r"`([^`]+?)`:\n```.+?\n(.+?)```", re.DOTALL)
+    matches = regex.finditer(chat)
 
-    matches = re.finditer(regex, chat, re.DOTALL)
-
-    files = []
-    for match in matches:
-        path = match.group(1).split("\n")[0]
-        # Get the code
-        code = match.group(1).split("\n")[1:]
-        code = "\n".join(code)
-        # Add the file to the list
-        files.append((path, code))
-    
-    return files
+    return [(match.group(1), match.group(2)) for match in matches]
 
 
 def to_files(chat, workspace):

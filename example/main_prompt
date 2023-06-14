@@ -1,1 +1,6 @@
 We are writing snake in python. MVC components split in separate files. Keyboard control.
+
+in your responses, please make sure to use the following format:
+    `[FILENAME]`:
+    ```[FILETYPE]
+    [DATA]
